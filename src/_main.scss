@@ -1,0 +1,44 @@
+.main {
+  display: none;//block
+  &__seeing {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    @include element-fluid(20, 100, "margin-block");
+    width: min(95vw, 1920px);
+
+    .seeing__image {
+      @include element-fluid(75, 300);
+    }
+
+    .seeing__present {
+      @include element-fluid(200, 800);
+      @include element-fluid(100, 400, "height");
+      @include element-fluid(10, 40, "border-radius");
+      @include element-fluid(25, 100, "font-size");
+      background-color: rgb(43, 90, 59);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  &__input-answer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    column-gap: 10px;
+    input {
+      @include element-fluid(40, 160);
+      @include element-fluid(40, 160, "height");
+      @include element-fluid(20, 80, "font-size");
+      border: 1px solid black;
+      border-radius: 10px;
+      background-color: #eee;
+      cursor: pointer;
+    }
+  }
+}

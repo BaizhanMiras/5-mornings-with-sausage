@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5 Mornings with Sausage</title>
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="container__background">
+        <img
+          src="images/display/startGame.png"
+          class="container__background-image"
+        />
+      </div>
+      <div class="container__display">
+        <div class="container__title">
+          <h1>5 Mornings with Sausage</h1>
+        </div>
+        <div class="container__button-start button-start">
+          <button class="button-start__start">Начать</button>
+        </div>
+      </div>
+    </div>
+    <div class="main">
+      <div class="main__seeing seeing">
+        <img src="images/mouthCloseSausage.png" class="seeing__image" />
+        <div class="seeing__present"></div>
+      </div>
+      <div class="main__input-answer input-answer"></div>
+    </div>
+    <script type="module" src="dialog.js"></script>
+    <script type="module" src="display.js"></script>
+    <script type="module" src="data.js"></script>
+    <script type="module" src="game.js"></script>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

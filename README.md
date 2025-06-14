@@ -1,6 +1,6 @@
 # 🕔 5 Утра с Сосиской
 
-![Сосиска злится](./images/angrySausage.png)
+![Сосиска злится](./src/images/angrySausage.png)
 
 Play game:https://baizhanmiras.github.io/5-mornings-with-sausage/
 

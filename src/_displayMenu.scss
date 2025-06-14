@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Caveat', sans-serif;
+}
+
+@mixin element-fluid($min, $max, $property: width) {
+  #{$property}: clamp(#{$min}px, #{$max / 1920 * 100}vw, #{$max}px);
+}
+
+body {
+  .container {
+    display: flex; // flex
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+
+    &__background {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: -1;
+
+      &-image {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+      }
+    }
+
+    &__display {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 10vh;
+    }
+
+    h1 {
+      @include element-fluid(24, 128, "font-size");
+      color: #b63333;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    button {
+      @include element-fluid(200, 450);
+      @include element-fluid(16, 36, "font-size");
+      font-weight: bold;
+      background-color: #b63333;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 20px 40px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+
+      &:hover {
+        background-color: darken(#b63333, 10%);
+      }
+
+      @media screen and (max-width: 600px) {
+        padding: 10px;
+        @include element-fluid(150, 200);
+      }
+    }
+  }
+
+  .black-display {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0);
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    transition: background-color 3s ease;
+    z-index: 1000;
+
+    &.active {
+      background-color: rgba(0, 0, 0, 1);
+      pointer-events: auto;
+    }
+  }
+}
