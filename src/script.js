@@ -1,6 +1,15 @@
 "use strict";
-import { talk, animationSausageMouth, startDay} from "./dialog.js";
-import { showBlackDisplay } from "./display.js";
+import {
+  music,
+  startDay
+} from "./dialog.js";
+import { 
+  showBlackDisplay,
+  animationSausageMouth,
+  loseGame,
+  screamSausage,
+  animationClock
+} from "./display.js";
 import { data } from "./data.js";
 import { MathLesson } from "./game.js";
 
@@ -8,13 +17,13 @@ let counter = 0;
 
 document.querySelector(".button-start__start").
 addEventListener("click", () => {
-  data.music[1].play();
+  music.schoolBell.play();
   showBlackDisplay();
   document.querySelector(".container").
   style.display = "none";
   document.querySelector(".main").
   style.display = "block";
-  startDay(talk, 1, 0, animationSausageMouth, true, 100).
+  startDay(music, 4, 0, animationSausageMouth, true, 100).
   then(() => {
     nextLesson().
     then(() => {
@@ -37,59 +46,85 @@ function nextLesson() {
   return new Promise((resolve) => {
     const lesson = data.lesson
     [Math.floor(Math.random() * data.lesson.length)];
-    nextQuestion(talk.startLesson.get(lesson)).then(() => {
+    nextQuestion(music.startLesson.get(lesson)).then(() => {
       resolve()
     });
   })
 }
 
-
 function giveATask(callbackFn, complexity = 1) {
   return new Promise((resolve) => {
     let currentValue = callbackFn(complexity);
     const inputDiv = document.querySelector(".input-answer");
-
-    // Remove any previous event listener
     inputDiv.replaceWith(inputDiv.cloneNode(true));
     const newInputDiv = document.querySelector(".input-answer");
 
-    function handleClick(element) {
-      if (element.target.tagName === "INPUT") {
-        newInputDiv.removeEventListener("click", handleClick); // Remove after first use
-        if (currentValue === Number(element.target.value)) {
-          talk.CheckAnswerSay.get("true").play();
-          animationSausageMouth(
-            talk.CheckAnswerSay.get("true").duration * 1000
+    let answered = false;
+    let time = 0;
+    let idInterval = setInterval(() => {
+      if ( answered ) {
+        clearInterval(idInterval);
+        document.querySelector(".seeing__clock").
+        src = `images/clock/0time.png`;
+      }
+      else {
+        if ( time === 11 ) {
+          animationClock(false);
+          clearInterval(idInterval);
+          newInputDiv.removeEventListener("click", handleClick);
+          music.timeOut.play();
+          animationSausageMouth(music.timeOut.duration * 1000);
+          counter++;
+          data.attempt++
+          setTimeout(
+            CheckAnswer,
+            music.CheckAnswerSay.get("false").duration * 1000
           );
-          setTimeout(() => {
-            counter++;
-            if (counter < 10) {
-              giveATask(callbackFn, complexity);
-              resolve();
-            } else {
-              counter = 0;
-              nextLesson().then(() => {
-                giveATask(callbackFn, complexity);
-              });
-            }
-          }, talk.CheckAnswerSay.get("true").duration * 1000);
+        }
+        else {
+          time++;
+          animationClock(true, time)
+        }
+      }
+    }, music.clockSong.get(0).duration * 1000 + 500)
+    function CheckAnswer() {
+      if (data.attempt === 3) {
+        loseGame().then(() => {
+          screamSausage();
+        })
+      }
+      else if (counter < 10) {
+        giveATask(callbackFn, complexity).then(resolve);
+      } 
+      else {
+        counter = 0;
+        nextLesson().then(() => {
+          giveATask(callbackFn, complexity).then(resolve);
+        });
+      }
+    }
+
+    function handleClick(event) {
+      if (event.target.tagName === "INPUT" && !answered) {
+        answered = true;
+        newInputDiv.removeEventListener("click", handleClick);
+        if (currentValue === Number(event.target.value)) {
+          music.CheckAnswerSay.get("true").play();
+          animationSausageMouth(music.CheckAnswerSay.get("true").duration * 1000);
+          counter++;
+          setTimeout(
+            CheckAnswer,
+            music.CheckAnswerSay.get("true").duration * 1000
+          );
         } else {
-          talk.CheckAnswerSay.get("false").play();
-          animationSausageMouth(
-            talk.CheckAnswerSay.get("false").duration * 1000
+          music.CheckAnswerSay.get("false").play();
+          animationSausageMouth(music.CheckAnswerSay.get("false").duration * 1000);
+          counter++;
+          data.attempt++
+          setTimeout(
+            CheckAnswer,
+            music.CheckAnswerSay.get("false").duration * 1000
           );
-          setTimeout(() => {
-            counter++;
-            if (counter < 10) {
-              giveATask(callbackFn, complexity);
-            } else {
-              counter = 0;
-              nextLesson().then(() => {
-                giveATask(callbackFn, complexity);
-                resolve();
-              });
-            }
-          }, talk.CheckAnswerSay.get("false").duration * 1000);
         }
       }
     }
@@ -97,3 +132,4 @@ function giveATask(callbackFn, complexity = 1) {
     newInputDiv.addEventListener("click", handleClick);
   });
 }
+

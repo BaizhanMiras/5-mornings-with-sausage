@@ -86,6 +86,7 @@ body .black-display.active {
 }
 .main__seeing .seeing__image {
   width: clamp(75px, 15.625vw, 300px);
+  user-select: none;
 }
 .main__seeing .seeing__present {
   width: clamp(200px, 41.6666666667vw, 800px);
@@ -97,6 +98,13 @@ body .black-display.active {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.main__seeing .seeing__clock {
+  width: clamp(50px, 10.4166666667vw, 200px);
+  height: clamp(50px, 10.4166666667vw, 200px);
+  margin-top: clamp(50px, 10.4166666667vw, 200px);
+  cursor: pointer;
+  user-select: none;
 }
 .main__input-answer {
   display: flex;

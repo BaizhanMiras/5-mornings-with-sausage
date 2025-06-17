@@ -10,6 +10,7 @@
 
     .seeing__image {
       @include element-fluid(75, 300);
+      user-select: none;
     }
 
     .seeing__present {
@@ -22,6 +23,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+    .seeing__clock {
+      @include element-fluid(50, 200);
+      @include element-fluid(50, 200, "height");
+      @include element-fluid(50, 200, "margin-top");
+      cursor: pointer;
+      user-select: none;
     }
   }
 

@@ -27,7 +27,6 @@ const data = {
       amount: 0
     }
   ],
-  music: []
 }
 
 data.question.set(1, 10); // question: 20 
@@ -40,8 +39,5 @@ data.complexity.set(2, 1); // complexity: 1
 data.complexity.set(3, 2); // complexity: 2
 data.complexity.set(4, 2); // complexity: 2
 data.complexity.set(5, 3); // complexity: 3
-
-data.music[0] = new Audio("songs/Monkeys-Spinning-Monkeys(chosic.com).mp3");
-data.music[1] = new Audio("songs/schoolBell.mp3");
 
 export { data };
