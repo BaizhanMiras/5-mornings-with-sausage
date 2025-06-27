@@ -99,6 +99,30 @@ body .black-display.active {
   justify-content: center;
   align-items: center;
 }
+.main__seeing .seeing__present img {
+  width: clamp(75px, 15.625vw, 300px);
+}
+.main__seeing .seeing__present span {
+  margin: 0 0.2rem;
+  position: relative;
+}
+.main__seeing .seeing__present span.letters {
+  width: clamp(10px, 2.0833333333vw, 40px);
+  align-items: center;
+  user-select: none;
+}
+.main__seeing .seeing__present span.letters::after {
+  content: "";
+  position: absolute;
+  width: 95%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+}
+.main__seeing .seeing__present span.hide {
+  color: transparent;
+}
 .main__seeing .seeing__clock {
   width: clamp(50px, 10.4166666667vw, 200px);
   height: clamp(50px, 10.4166666667vw, 200px);
@@ -117,10 +141,13 @@ body .black-display.active {
   width: clamp(40px, 8.3333333333vw, 160px);
   height: clamp(40px, 8.3333333333vw, 160px);
   font-size: clamp(20px, 4.1666666667vw, 80px);
+  border-radius: clamp(5px, 1.0416666667vw, 20px);
   border: 1px solid black;
-  border-radius: 10px;
   background-color: #eee;
   cursor: pointer;
+}
+.main__input-answer input.long {
+  width: clamp(70px, 14.5833333333vw, 280px);
 }
 
 /*# sourceMappingURL=style.css.map */

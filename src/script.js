@@ -11,8 +11,9 @@ import {
   animationClock
 } from "./display.js";
 import { data } from "./data.js";
-import { MathLesson } from "./game.js";
+import { engLesson, MathLesson, geografiaLesson } from "./game.js";
 
+let currentLesson = "";
 let counter = 0;
 
 document.querySelector(".button-start__start").
@@ -27,7 +28,16 @@ addEventListener("click", () => {
   then(() => {
     nextLesson().
     then(() => {
-      giveATask( MathLesson );
+      switch(currentLesson) {
+        case "Math":
+          giveATask ( MathLesson );
+          break;
+        case "Eng":
+          giveATask ( engLesson );
+          break;
+        case "geografia":
+          giveATask ( geografiaLesson );
+      }
     })
   })
 })
@@ -44,10 +54,16 @@ function nextQuestion(audio) {
 
 function nextLesson() {
   return new Promise((resolve) => {
-    const lesson = data.lesson
-    [Math.floor(Math.random() * data.lesson.length)];
-    nextQuestion(music.startLesson.get(lesson)).then(() => {
-      resolve()
+    const mathCurrent = Math.random() < 0.33;
+    if ( mathCurrent ) {
+      currentLesson = "Math";
+    } else {
+      currentLesson = data.lesson
+      [Math.floor(Math.random() * data.lesson.length)];
+    }
+
+    nextQuestion(music.startLesson.get(currentLesson)).then(() => {
+      resolve();
     });
   })
 }
@@ -75,6 +91,7 @@ function giveATask(callbackFn, complexity = 1) {
           music.timeOut.play();
           animationSausageMouth(music.timeOut.duration * 1000);
           counter++;
+          data.counterQuestion++;
           data.attempt++
           setTimeout(
             CheckAnswer,
@@ -88,19 +105,41 @@ function giveATask(callbackFn, complexity = 1) {
       }
     }, music.clockSong.get(0).duration * 1000 + 500)
     function CheckAnswer() {
-      if (data.attempt === 3) {
+      if (data.attempt === 10) {
         loseGame().then(() => {
           screamSausage();
         })
       }
-      else if (counter < 10) {
+      if (data.counterQuestion === data.question.get(data.day)) {
+        music.endDays.play();
+        setTimeout(() => {
+          showBlackDisplay();
+          
+          document.querySelector(".main").
+          style.display = "none";
+
+          document.querySelector(".container").
+          style.display = "flex";
+        }, music.endDays.duration * 1000);
+      }
+      else if (counter < 3) {
         giveATask(callbackFn, complexity).then(resolve);
       } 
       else {
         counter = 0;
-        nextLesson().then(() => {
-          giveATask(callbackFn, complexity).then(resolve);
-        });
+        nextLesson().
+        then(() => {
+          switch(currentLesson) {
+            case "Math":
+              giveATask ( MathLesson );
+              break;
+            case "Eng":
+              giveATask ( engLesson );
+              break;
+            case "geografia":
+              giveATask ( geografiaLesson );
+          }
+        })
       }
     }
 
@@ -108,10 +147,11 @@ function giveATask(callbackFn, complexity = 1) {
       if (event.target.tagName === "INPUT" && !answered) {
         answered = true;
         newInputDiv.removeEventListener("click", handleClick);
-        if (currentValue === Number(event.target.value)) {
+        if (currentValue == event.target.value) {
           music.CheckAnswerSay.get("true").play();
           animationSausageMouth(music.CheckAnswerSay.get("true").duration * 1000);
           counter++;
+          data.counterQuestion++;
           setTimeout(
             CheckAnswer,
             music.CheckAnswerSay.get("true").duration * 1000
@@ -120,6 +160,7 @@ function giveATask(callbackFn, complexity = 1) {
           music.CheckAnswerSay.get("false").play();
           animationSausageMouth(music.CheckAnswerSay.get("false").duration * 1000);
           counter++;
+          data.counterQuestion++;
           data.attempt++
           setTimeout(
             CheckAnswer,

@@ -18,20 +18,12 @@ music.startLesson.set(
   new Audio("songs/LessonDialog/LessonStart/Math.mp3")
 );
 music.startLesson.set(
-  "Geometry",
-  new Audio("songs/LessonDialog/LessonStart/Geometry.mp3")
-);
-music.startLesson.set(
   "Eng",
   new Audio("songs/LessonDialog/LessonStart/Eng.mp3")
 );
 music.startLesson.set(
-  "Geography",
+  "geografia",
   new Audio("songs/LessonDialog/LessonStart/Geography.mp3")
-);
-music.startLesson.set(
-  "Reaction",
-  new Audio("songs/LessonDialog/LessonStart/Reaction.mp3")
 );
 
 music.CheckAnswerSay.set(

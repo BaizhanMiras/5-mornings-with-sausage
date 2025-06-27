@@ -3,14 +3,12 @@ const data = {
   attempt: 0,
   cash: 0,
   question: new Map(),
-  time: 15,
+  counterQuestion: 0,
   complexity: new Map(),
   lesson: [
     "Math",
-    // "reaction",
-    // "english",
-    // "geometry",
-    // "geography"
+    "Eng",
+    "geografia"
   ],
 
   things: [
@@ -29,11 +27,11 @@ const data = {
   ],
 }
 
-data.question.set(1, 10); // question: 20 
-data.question.set(2, 10); // question: 30 
-data.question.set(3, 10); // question: 30 
-data.question.set(4, 10); // question: 40 
-data.question.set(5, 10); // question: 50 
+data.question.set(1, 5); // question: 20 
+data.question.set(2, 30); // question: 30 
+data.question.set(3, 30); // question: 30 
+data.question.set(4, 40); // question: 40 
+data.question.set(5, 50); // question: 50 
 data.complexity.set(1, 1); // complexity: 1
 data.complexity.set(2, 1); // complexity: 1
 data.complexity.set(3, 2); // complexity: 2

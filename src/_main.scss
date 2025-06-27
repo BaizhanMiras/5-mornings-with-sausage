@@ -23,6 +23,30 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      img {
+        @include element-fluid(75, 300);
+      }
+      span {
+        margin: 0 0.2rem;
+        position: relative;
+        &.letters {
+          @include element-fluid(10, 40);
+          align-items: center;
+          user-select: none;
+          &::after {
+            content: "";
+            position: absolute;
+            width: 95%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+          }
+        }
+        &.hide {
+          color: transparent;
+        }
+      }
     }
     .seeing__clock {
       @include element-fluid(50, 200);
@@ -43,10 +67,13 @@
       @include element-fluid(40, 160);
       @include element-fluid(40, 160, "height");
       @include element-fluid(20, 80, "font-size");
+      @include element-fluid(5, 20, "border-radius");
       border: 1px solid black;
-      border-radius: 10px;
       background-color: #eee;
       cursor: pointer;
+      &.long {
+        @include element-fluid(70, 280);
+      }
     }
   }
 }
