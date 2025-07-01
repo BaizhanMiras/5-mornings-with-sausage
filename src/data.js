@@ -2,6 +2,8 @@ const data = {
   day: 1,
   attempt: 0,
   cash: 0,
+  clockBreak: false,
+  shouldBreak: false,
   question: new Map(),
   counterQuestion: 0,
   complexity: new Map(),
@@ -14,20 +16,23 @@ const data = {
   things: [
     {
       name: "hammer",
-      amount: 0
+      amount: 0,
+      cost: 3
     },
     {
       name: "hair dryer",
-      amount: 0
+      amount: 0,
+      cost: 5
     },
     {
       name: "eye drops",
-      amount: 0
+      amount: 0,
+      cost: 10
     }
   ],
 }
 
-data.question.set(1, 5); // question: 20 
+data.question.set(1, 20); // question: 20 
 data.question.set(2, 30); // question: 30 
 data.question.set(3, 30); // question: 30 
 data.question.set(4, 40); // question: 40 

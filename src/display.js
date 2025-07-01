@@ -1,4 +1,5 @@
 import { music } from "./dialog.js";
+import { data } from "./data.js";
 
 function showBlackDisplay() {
   const blackDisplay = document.createElement("div");
@@ -9,7 +10,7 @@ function showBlackDisplay() {
   setTimeout(() => {
     blackDisplay.classList.remove("active");
     blackDisplay.offsetWidth;
-  }, 3000)
+  }, 1000)
 }
 
 function animationClock( tick, num ) {
@@ -57,7 +58,7 @@ function animationSausageMouth(
 
 function loseGame() {
   return new Promise((resolve) => {
-    const song = music.endDays; //loseListen
+    const song = music.loseListen; //loseListen
     song.play();
     document.body.style.background = "radial-gradient(circle, #ff0000, black)";
     animationSausageMouth(song.duration * 1000);
@@ -82,10 +83,48 @@ function screamSausage() {
   sausage.setAttribute("src", "images/mouthScreamer.png");
 }
 
+function createPaper() {
+  const schoolBoard = document.
+  querySelector(".seeing__present");
+  const paper = document.createElement("div");
+  paper.classList.add("paper");
+  const x = Math.round(Math.random() * 40 + 20);
+  const y = Math.round(Math.random() * 20 + 20);
+  paper.style.left = `${x}%`;
+  paper.style.top = `${y}%`;
+  schoolBoard.appendChild(paper);
+}
+
+function clearPaper() {
+  const paper = document.querySelector(".paper");
+  paper.remove();
+}
+
+function createBlurEffect() {
+  const schoolBoard = document.
+  querySelector(".seeing__present");
+  schoolBoard.classList.add("blur");
+}
+
+function clearBlurEffect() {
+  const schoolBoard = document.
+  querySelector(".seeing__present");
+  schoolBoard.classList.remove("blur");
+}
+
 export {
   showBlackDisplay,
   animationClock,
   animationSausageMouth,
   loseGame, 
-  screamSausage
+  screamSausage,
+  createPaper,
+  clearPaper,
+  createBlurEffect,
+  clearBlurEffect
 };
+
+setInterval(() => {
+  document.querySelector(".amount-butter__value").
+  textContent = data.cash;
+},1000)

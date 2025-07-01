@@ -1,3 +1,6 @@
+// звуки взяты с сайтов:
+// https://zvukipro.com/
+// https://zvukogram.com/
 
 const music = {
   startLesson: new Map(),
@@ -6,9 +9,16 @@ const music = {
   endDays: new Audio("songs/LessonDialog/endDay.mp3"),
   loseListen: new Audio("songs/LessonDialog/badEnding.mp3"),
   screamSausage: new Audio("songs/LessonDialog/screamer.mp3"),
+
   schoolBell: new Audio("songs/schoolBell.mp3"),
   clockSong: new Map(),
-  timeOut: new Audio("songs/LessonDialog/timeOut.mp3")
+  breakClock: new Audio("songs/rezkiy-silnyiy-stuk-jeleznoy-krujkoy-po-stolu.mp3"),
+  timeOut: new Audio("songs/LessonDialog/timeOut.mp3"),
+
+  blowPaper: new Audio("songs/korotkiy-zvuk-fena1.mp3"),
+  blob: new Audio("songs/zvon-kapli-iz-multika.mp3"),
+
+  buyThings: new Audio("songs/zvuk12.mp3")
 };
 
 // safe audio files in the map
@@ -64,12 +74,3 @@ export {
   music,
   startDay
 }
-
-// export function playAudio(audio) {
-//   return new Promise((resolve) => {
-//     audio.play();
-//     audio.onended = () => {
-//       resolve();
-//     };
-//   });
-// }

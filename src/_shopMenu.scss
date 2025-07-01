@@ -1,0 +1,60 @@
+.shop {
+  display: none;// grid
+  align-items: center;
+  margin: auto;
+  justify-content: space-between;
+  @include element-fluid(0, 1920);
+  @include element-fluid(0, 100, "padding");
+  &__container {
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #fffdea;
+    @include element-fluid(3, 12, "border-radius");
+    @include element-fluid(5, 20, "padding");
+    @include element-fluid(100, 1720);
+  }
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  &__item {
+    &-image {
+      @include element-fluid(100, 400);
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+    h3 {
+      @include element-fluid(14, 56, "font-size");
+    }
+    p {
+      @include element-fluid(12, 48, "font-size");
+    }
+  }
+  &__title {
+    @include element-fluid(24, 96, "font-size");
+  }
+  button {
+    @include element-fluid(12, 48, "font-size");
+    @include element-fluid(8, 32, "padding");
+    @include element-fluid(0, 100, "border-radius");
+    margin-inline: auto;
+    background-color: #f0f0f0;
+    border: none;
+    cursor: pointer;
+    &:hover {
+      background-color: #e0e0e0;
+    }
+  }
+}
+
+.amount-butter {
+  display: flex;
+  position: fixed;
+  gap: 2%;
+  top: 3px;
+  right: 5%;
+  @include element-fluid(16, 72, "font-size");
+}

@@ -56,7 +56,6 @@ function createNumber(display) {
 
 function createQuestionMath(amount = 3, display = amount, complexity = 1) {
   let trueAnswer = createNumber(display);
-  console.log(trueAnswer);
   if (trueAnswer < 9 && trueAnswer > -9) {
     return MathLesson(complexity);
   }
@@ -141,7 +140,6 @@ function createQuestionEng(amount = 3) {
     input.appendChild(element);
   })
 
-  console.log(trueAnswer);
   return trueAnswer;
 }
 
@@ -159,7 +157,6 @@ function createFlag() {
 
 function createQuestionGeografia(amount = 3) {
   let trueAnswer = createFlag();
-  console.log(trueAnswer);
   const input = document.querySelector(".input-answer");
   input.innerHTML = "";
 

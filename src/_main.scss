@@ -21,6 +21,7 @@
       background-color: rgb(43, 90, 59);
       color: white;
       display: flex;
+      position: relative;
       justify-content: center;
       align-items: center;
       img {
@@ -47,6 +48,18 @@
           color: transparent;
         }
       }
+      .paper {
+        position: absolute;
+        @include element-fluid(40, 160);
+        @include element-fluid(40, 160, "height");
+        background-color: burlywood;
+        cursor: pointer;
+        user-select: none;
+      }
+    }
+    .blur {
+      filter: blur(5px);
+      cursor: pointer;
     }
     .seeing__clock {
       @include element-fluid(50, 200);

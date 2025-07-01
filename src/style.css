@@ -73,6 +73,65 @@ body .black-display.active {
   pointer-events: auto;
 }
 
+.shop {
+  display: none;
+  align-items: center;
+  margin: auto;
+  justify-content: space-between;
+  width: clamp(0px, 100vw, 1920px);
+  padding: clamp(0px, 5.2083333333vw, 100px);
+}
+.shop__container {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #fffdea;
+  border-radius: clamp(3px, 0.625vw, 12px);
+  padding: clamp(5px, 1.0416666667vw, 20px);
+  width: clamp(100px, 89.5833333333vw, 1720px);
+}
+.shop__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+.shop__item-image {
+  width: clamp(100px, 20.8333333333vw, 400px);
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.shop__item h3 {
+  font-size: clamp(14px, 2.9166666667vw, 56px);
+}
+.shop__item p {
+  font-size: clamp(12px, 2.5vw, 48px);
+}
+.shop__title {
+  font-size: clamp(24px, 5vw, 96px);
+}
+.shop button {
+  font-size: clamp(12px, 2.5vw, 48px);
+  padding: clamp(8px, 1.6666666667vw, 32px);
+  border-radius: clamp(0px, 5.2083333333vw, 100px);
+  margin-inline: auto;
+  background-color: #f0f0f0;
+  border: none;
+  cursor: pointer;
+}
+.shop button:hover {
+  background-color: #e0e0e0;
+}
+
+.amount-butter {
+  display: flex;
+  position: fixed;
+  gap: 2%;
+  top: 3px;
+  right: 5%;
+  font-size: clamp(16px, 3.75vw, 72px);
+}
+
 .main {
   display: none;
 }
@@ -96,6 +155,7 @@ body .black-display.active {
   background-color: rgb(43, 90, 59);
   color: white;
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
 }
@@ -122,6 +182,18 @@ body .black-display.active {
 }
 .main__seeing .seeing__present span.hide {
   color: transparent;
+}
+.main__seeing .seeing__present .paper {
+  position: absolute;
+  width: clamp(40px, 8.3333333333vw, 160px);
+  height: clamp(40px, 8.3333333333vw, 160px);
+  background-color: burlywood;
+  cursor: pointer;
+  user-select: none;
+}
+.main__seeing .blur {
+  filter: blur(5px);
+  cursor: pointer;
 }
 .main__seeing .seeing__clock {
   width: clamp(50px, 10.4166666667vw, 200px);
